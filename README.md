@@ -40,7 +40,7 @@ enum Banks {
 ## Example
 ```typescript
 // Get yen value in bolivars
-const yenPrice = await getFromCurrency(CurrencyKinds.yen).then((val) => val)
+const yenPrice = await getFromCurrency(Currencies.yen).then((val) => val)
 console.log(yenPrice)
 ```
 
