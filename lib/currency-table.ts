@@ -1,7 +1,8 @@
+import { CURRENCIES_SRC, REQ_AGENT } from "@lib/config";
+import { Currencies } from "@lib/enums";
+import type { CurrencyTable } from "@lib/types";
 import axios from "axios";
 import { parse } from "node-html-parser";
-import type { Currencies } from "@lib/enums";
-import { REQ_AGENT, CURRENCIES_SRC } from "@lib/config";
 
 /**
  * Get the value in bolivars of a requested currency
@@ -26,5 +27,35 @@ export async function getFromCurrency(currency: Currencies): Promise<number> {
 	} catch (except) {
 		console.error(except);
 		return Number.NaN;
+	}
+}
+
+/**  Gets the values in bolivars of all currencies */
+export async function getCurrencyTable(): Promise<CurrencyTable> {
+	const currencyTable = {} as CurrencyTable;
+
+	try {
+		return await axios
+			.get(CURRENCIES_SRC, { httpsAgent: REQ_AGENT })
+			.then((document) => {
+				const docTree = parse(document.data);
+				const regexFilter = /([A-Z]|\s)/gim;
+
+				for (const currency of Object.values(Currencies)) {
+					currencyTable[currency] = Number.parseFloat(
+						(docTree.getElementById(currency)?.innerText as string)
+							.replace(regexFilter, "")
+							.replace(",", "."),
+					);
+				}
+
+				return currencyTable;
+			});
+	} catch (except) {
+		console.error(except);
+		for (const currency of Object.values(Currencies)) {
+			currencyTable[currency] = Number.NaN;
+		}
+		return currencyTable;
 	}
 }

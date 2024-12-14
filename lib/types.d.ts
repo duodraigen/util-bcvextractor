@@ -1,3 +1,5 @@
+import type { Currencies } from "@lib/enums";
+
 /**
  * Value obtained from bank list usd table
  * it only supports the actual usd prices
@@ -11,3 +13,5 @@ export type USDBankInfo = {
 	sell: number;
 	buy: number;
 };
+
+export type CurrencyTable = Record<Currencies, number>;
