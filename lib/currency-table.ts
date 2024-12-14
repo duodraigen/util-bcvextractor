@@ -1,13 +1,14 @@
-import { CURRENCIES_SRC, REQ_AGENT } from "@lib/config";
-import { Currencies } from "@lib/enums";
-import type { CurrencyTable } from "@lib/types";
 import axios from "axios";
 import { parse } from "node-html-parser";
 
+import { Currencies } from "@lib/enums";
+import type { CurrencyTable } from "@lib/types";
+import { CURRENCIES_SRC, REQ_AGENT } from "@lib/config";
+
 /**
  * Get the value in bolivars of a requested currency
- * @param currency { Currencies } - Which currency is the requested (see **Currencies** enum)
- * @returns number | NaN
+ * @param { Currencies } currency - Which currency is the requested (see **Currencies** enum)
+ * @returns { Promise<number> | NaN } The value of requested currency
  */
 export async function getFromCurrency(currency: Currencies): Promise<number> {
 	try {
@@ -30,9 +31,9 @@ export async function getFromCurrency(currency: Currencies): Promise<number> {
 	}
 }
 
-/** 
- * Gets the values in bolivars of all currencies 
- * @returns CurrencyTable
+/**
+ * Gets the values in bolivars of all currencies
+ * @returns { Promise<CurrencyTable> } A record with the supported banks
  */
 export async function getCurrencyTable(): Promise<CurrencyTable> {
 	const currencyTable = {} as CurrencyTable;
