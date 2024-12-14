@@ -1,5 +1,4 @@
-import { Currencies, getFromCurrency } from "@";
-import { getCurrencyTable } from "@lib/currency-table";
+import { Currencies, getFromCurrency, getCurrencyTable } from "@";
 
 describe("Testing currency table data scrapping", () => {
 	test("Expecting a number", async () => {
