@@ -13,9 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getFromCurrency = getFromCurrency;
+exports.getCurrencyTable = getCurrencyTable;
+const config_1 = require("./config");
+const enums_1 = require("./enums");
 const axios_1 = __importDefault(require("axios"));
 const node_html_parser_1 = require("node-html-parser");
-const config_1 = require("./config");
 function getFromCurrency(currency) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -33,6 +35,33 @@ function getFromCurrency(currency) {
         catch (except) {
             console.error(except);
             return Number.NaN;
+        }
+    });
+}
+function getCurrencyTable() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const currencyTable = {};
+        try {
+            return yield axios_1.default
+                .get(config_1.CURRENCIES_SRC, { httpsAgent: config_1.REQ_AGENT })
+                .then((document) => {
+                var _a;
+                const docTree = (0, node_html_parser_1.parse)(document.data);
+                const regexFilter = /([A-Z]|\s)/gim;
+                for (const currency of Object.values(enums_1.Currencies)) {
+                    currencyTable[currency] = Number.parseFloat(((_a = docTree.getElementById(currency)) === null || _a === void 0 ? void 0 : _a.innerText)
+                        .replace(regexFilter, "")
+                        .replace(",", "."));
+                }
+                return currencyTable;
+            });
+        }
+        catch (except) {
+            console.error(except);
+            for (const currency of Object.values(enums_1.Currencies)) {
+                currencyTable[currency] = Number.NaN;
+            }
+            return currencyTable;
         }
     });
 }
