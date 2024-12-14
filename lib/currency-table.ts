@@ -30,7 +30,10 @@ export async function getFromCurrency(currency: Currencies): Promise<number> {
 	}
 }
 
-/**  Gets the values in bolivars of all currencies */
+/** 
+ * Gets the values in bolivars of all currencies 
+ * @returns CurrencyTable
+ */
 export async function getCurrencyTable(): Promise<CurrencyTable> {
 	const currencyTable = {} as CurrencyTable;
 
