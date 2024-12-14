@@ -1,5 +1,12 @@
-import { USDBankInfo } from "@lib/types";
-import { getFromCurrency } from "@lib/currency-table";
 import { Currencies, Banks } from "@lib/enums";
+import { USDBankInfo, CurrencyTable } from "@lib/types";
+import { getFromCurrency, getCurrencyTable } from "@lib/currency-table";
 
-export { Currencies, USDBankInfo, Banks, getFromCurrency };
+export {
+	Banks,
+	Currencies,
+	USDBankInfo,
+	CurrencyTable,
+	getFromCurrency,
+	getCurrencyTable,
+};
