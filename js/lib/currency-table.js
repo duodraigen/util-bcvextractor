@@ -16,21 +16,15 @@ exports.getFromCurrency = getFromCurrency;
 exports.getCurrencyTable = getCurrencyTable;
 const axios_1 = __importDefault(require("axios"));
 const node_html_parser_1 = require("node-html-parser");
-const enums_1 = require("./enums");
 const config_1 = require("./config");
+const enums_1 = require("./enums");
+const utils_1 = require("./utils");
 function getFromCurrency(currency) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const result = yield axios_1.default
+            return yield axios_1.default
                 .get(config_1.CURRENCIES_SRC, { httpsAgent: config_1.REQ_AGENT })
-                .then((document) => {
-                var _a;
-                const docTree = (0, node_html_parser_1.parse)(document.data);
-                const expression = (_a = docTree.getElementById(currency)) === null || _a === void 0 ? void 0 : _a.innerText;
-                const regexFilter = /([A-Z]|\s)/gim;
-                return Number.parseFloat(expression.replace(regexFilter, "").replace(",", "."));
-            });
-            return result;
+                .then(({ data }) => { var _a; return (0, utils_1.toFloat)((_a = (0, node_html_parser_1.parse)(data).getElementById(currency)) === null || _a === void 0 ? void 0 : _a.innerText); });
         }
         catch (except) {
             console.error(except);
@@ -44,14 +38,11 @@ function getCurrencyTable() {
         try {
             return yield axios_1.default
                 .get(config_1.CURRENCIES_SRC, { httpsAgent: config_1.REQ_AGENT })
-                .then((document) => {
+                .then(({ data }) => {
                 var _a;
-                const docTree = (0, node_html_parser_1.parse)(document.data);
-                const regexFilter = /([A-Z]|\s)/gim;
+                const docTree = (0, node_html_parser_1.parse)(data);
                 for (const currency of Object.values(enums_1.Currencies)) {
-                    currencyTable[currency] = Number.parseFloat(((_a = docTree.getElementById(currency)) === null || _a === void 0 ? void 0 : _a.innerText)
-                        .replace(regexFilter, "")
-                        .replace(",", "."));
+                    currencyTable[currency] = (0, utils_1.toFloat)((_a = docTree.getElementById(currency)) === null || _a === void 0 ? void 0 : _a.innerText);
                 }
                 return currencyTable;
             });
