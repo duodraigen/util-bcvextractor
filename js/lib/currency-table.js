@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getFromCurrency = getFromCurrency;
 exports.getCurrencyTable = getCurrencyTable;
-const config_1 = require("./config");
-const enums_1 = require("./enums");
 const axios_1 = __importDefault(require("axios"));
 const node_html_parser_1 = require("node-html-parser");
+const enums_1 = require("./enums");
+const config_1 = require("./config");
 function getFromCurrency(currency) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
