@@ -7,6 +7,8 @@
 /**
  * Every supported bank available
  * in the table of the data source
+ * @readonly
+ * @enum {string}
  */
 export enum Banks {
 	bnc = "Banco Nacional de Crédito BNC",
@@ -20,6 +22,8 @@ export enum Banks {
 /**
  * Every kind of available currency
  * at the source
+ * @readonly
+ * @enum {string}
  */
 export enum Currencies {
 	usd = "dolar",
