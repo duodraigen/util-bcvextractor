@@ -14,6 +14,21 @@ The scrapping method is done using [node-html-parser](https://www.npmjs.com/pack
 await getFromCurrency(Currencies.<SupportedCurrency>).then((data) => {console.log(data)})
 ```
 
+**To get all currency values**
+```typescript 
+await getCurrencyTable().then((data) => {console.log(data)})
+```
+
+**`NEW` To get a USD information from a supported bank**
+```typescript
+await getBankFromTable(Banks.<SupportedBank>).then((data) => {console.log(data)})
+```
+
+**`NEW` To get a USD information from all supported banks**
+```typescript
+await getBanksTable().then((data) => {console.log(data)})
+```
+
 ## Supported Currencies
 ```typescript
 enum Currencies {
@@ -32,16 +47,33 @@ enum Banks {
 	bbva = "BBVA Provincial",
 	other = "Otras Instituciones",
 	merca = "Banco Mercantil",
-	exter = "Banco Exterior",
 	banes = "Banesco",
 }
 ```
 
-## Example
+## Examples
 ```typescript
 // Get yen value in bolivars
 const yenPrice = await getFromCurrency(Currencies.yen).then((val) => val)
 console.log(yenPrice)
+```
+
+```typescript
+// Get buy value of USD from banesco bank in bolivars
+const banescoBuy = await getBankFromTable(Banks.banes).then((val) => val[Banks.banes].buy)
+console.log(banescoBuy)
+```
+
+```typescript
+// Get all currencies
+const table = await getCurrencyTable().then((val) => val)
+console.log(table)
+```
+
+```typescript
+// Get all banks
+const table = await getBanksTable().then((val) => val)
+console.log(table)
 ```
 
 ## Running tests
