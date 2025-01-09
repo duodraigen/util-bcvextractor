@@ -13,7 +13,7 @@ export const REQ_AGENT = new Agent({
  * USDBankInfo default fallback data
  */
 export const FALLBACK_BANK_DATA = {
-	bankName: "",
+	published: "",
 	buy: Number.NaN,
 	sell: Number.NaN,
 };

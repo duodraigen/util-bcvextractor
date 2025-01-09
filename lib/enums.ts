@@ -11,11 +11,16 @@
  * @enum {string}
  */
 export enum Banks {
+	/**
+	 * No longer supported:
+	 * - Banco Exterior
+	 * - 100% Banco
+	 * */
+
 	bnc = "Banco Nacional de Crédito BNC",
 	bbva = "BBVA Provincial",
 	other = "Otras Instituciones",
 	merca = "Banco Mercantil",
-	exter = "Banco Exterior",
 	banes = "Banesco",
 }
 
