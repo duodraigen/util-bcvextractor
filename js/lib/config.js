@@ -6,7 +6,7 @@ exports.REQ_AGENT = new node_https_1.Agent({
     rejectUnauthorized: false,
 });
 exports.FALLBACK_BANK_DATA = {
-    bankName: "",
+    published: "",
     buy: Number.NaN,
     sell: Number.NaN,
 };

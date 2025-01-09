@@ -7,7 +7,6 @@ var Banks;
     Banks["bbva"] = "BBVA Provincial";
     Banks["other"] = "Otras Instituciones";
     Banks["merca"] = "Banco Mercantil";
-    Banks["exter"] = "Banco Exterior";
     Banks["banes"] = "Banesco";
 })(Banks || (exports.Banks = Banks = {}));
 var Currencies;
