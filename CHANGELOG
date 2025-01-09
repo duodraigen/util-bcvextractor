@@ -1,0 +1,17 @@
+# CHANGELOG
+
+## V-1.1.0 - 01/08/25
+- Added support to extracting usd buy/sell prices per bank
+- Updated the supported banks enum to avoid non supported banks
+- Updated BankData for USDInfo to branch the 2 implementations of getting bank values
+- BankTable supports the bank name directly in the record
+- BankInfo supports only the supported banks listed on @Banks enum
+- Updated FALLBACK_BANK_DATA to adapt it to the new USDInfo structure
+
+## V-1.0.1 - 14/12/24
+- Added CurrencyTable type
+- Added support to get the whole currencies table
+- Improved floating number parsing from string
+
+## V-1.0.0 - 12/12/24
+- Changes from legacy version
