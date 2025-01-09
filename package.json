@@ -1,7 +1,7 @@
 {
 	"name": "util-bcvextractor",
 	"author": "duodraigen",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"main": "index.ts",
 	"license": "MIT",
 	"description": "Utility to apply web scrapping to Central Bank of Venezuela page",
