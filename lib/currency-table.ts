@@ -2,8 +2,8 @@ import axios from "axios";
 import { parse } from "node-html-parser";
 
 import { CURRENCIES_SRC, REQ_AGENT } from "@lib/config";
-import { Currencies } from "@lib/enums";
 import type { CurrencyTable } from "@lib/types";
+import { Currencies } from "@lib/enums";
 import { toFloat } from "@lib/utils";
 
 /**

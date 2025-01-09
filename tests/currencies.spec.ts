@@ -3,7 +3,7 @@ import { Currencies, getFromCurrency, getCurrencyTable } from "@";
 describe("Testing currency table data scrapping", () => {
 	test("Expecting a number", async () => {
 		const val = await getFromCurrency(Currencies.usd);
-		expect(val).not.toBe(Number.NaN);
+		expect(val).not.toBeNaN();
 	});
 
 	test("Expecting a real value, not zero", async () => {
@@ -13,7 +13,7 @@ describe("Testing currency table data scrapping", () => {
 
 	test("Check if number is a floating point one", async () => {
 		const val = await getFromCurrency(Currencies.yen);
-		expect(Number.isInteger(val)).not.toBe(true);
+		expect(Number.isInteger(val)).toBeFalsy();
 	});
 });
 
@@ -28,7 +28,7 @@ describe("Testing getCurrencyTable data scrapping", () => {
 	test("Expecting numbers", async () => {
 		const result = await getCurrencyTable();
 		for (const currency of Object.values(result)) {
-			expect(currency).not.toBe(Number.NaN);
+			expect(currency).not.toBeNaN();
 		}
 	});
 
